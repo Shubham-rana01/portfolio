@@ -3,6 +3,7 @@ import {
   Component,
   HostListener,
   afterNextRender,
+  effect,
   inject,
   signal,
 } from '@angular/core';
@@ -44,6 +45,10 @@ export class Header {
   ];
 
   constructor() {
+    effect(() => {
+      document.body.classList.toggle('is-locked', this.open());
+    });
+
     afterNextRender(() => {
       this.trackScroll();
       this.trackActiveSection();
