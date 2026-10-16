@@ -21,7 +21,7 @@ export const PROFILE: Profile = {
   contactFormEndpoint: '',
 
   socials: [
-    { label: 'GitHub', url: 'https://github.com/Shubhamrana01', icon: 'github' },
+    { label: 'GitHub', url: 'https://github.com/shubham-rana01', icon: 'github' },
     {
       label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/shubham-rana-b76a041b6',
