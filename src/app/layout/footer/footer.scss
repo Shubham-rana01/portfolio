@@ -1,0 +1,86 @@
+.foot {
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  &__name {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  }
+
+  &__role {
+    font-size: 0.62rem;
+    color: var(--fg-faint);
+    margin-top: 0.4rem;
+  }
+
+  &__links {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    min-width: 170px;
+    border-top: 1px solid var(--line);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.64rem;
+    color: var(--fg-muted);
+    transition: color 0.2s var(--ease);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__end {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  &__copy {
+    font-size: 0.6rem;
+    color: var(--fg-faint);
+  }
+
+  &__top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.62rem;
+    color: var(--fg-muted);
+    transition: color 0.2s var(--ease);
+
+    app-icon {
+      rotate: -90deg;
+    }
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .foot__inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

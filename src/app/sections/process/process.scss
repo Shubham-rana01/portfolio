@@ -1,0 +1,71 @@
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding: 2.25rem 1.25rem 0 0;
+  border-top: 2px solid var(--line-strong);
+
+  /* Marker sitting on the rule reads like a timeline, not a card grid. */
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: -5px;
+    inset-inline-start: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  &:not(:first-child) {
+    padding-inline-start: 1.25rem;
+  }
+
+  &__num {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+  }
+
+  &__text {
+    font-size: 0.88rem;
+    color: var(--fg-muted);
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .step {
+    padding: 1.75rem 0 0;
+
+    &:not(:first-child) {
+      padding-inline-start: 0;
+    }
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}

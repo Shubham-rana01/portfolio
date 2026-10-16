@@ -1,0 +1,22 @@
+<section class="section" id="skills">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>06</b> Stack</p>
+      <h2 class="section__title display">Tools I <em>reach for</em></h2>
+      <p class="section__lead">Chosen for the problem, not the trend cycle.</p>
+    </header>
+
+    <dl class="stack">
+      @for (group of profile.skills; track group.category; let i = $index) {
+        <div class="stack__row" [appReveal]="i * 40">
+          <dt class="stack__category mono">{{ group.category }}</dt>
+          <dd class="stack__items">
+            @for (item of group.items; track item) {
+              <span class="chip">{{ item }}</span>
+            }
+          </dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>

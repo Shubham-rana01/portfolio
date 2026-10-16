@@ -1,0 +1,246 @@
+.bar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 200;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+
+  &--solid {
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom-color: var(--line);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: var(--header-h);
+  }
+}
+
+.progress {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 2px;
+  overflow: hidden;
+
+  &__fill {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform-origin: left;
+    will-change: transform;
+  }
+}
+
+.mark {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 0.7rem;
+
+  &__initials {
+    grid-row: span 2;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  &__name {
+    font-size: 0.93rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  &__role {
+    font-size: 0.6rem;
+    color: var(--fg-faint);
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin: 0;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    color: var(--fg-muted);
+    padding-block: 0.4rem;
+    transition: color 0.2s var(--ease);
+
+    &:hover {
+      color: var(--fg);
+    }
+
+    &--active {
+      color: var(--fg);
+    }
+
+    &--active::after {
+      content: '';
+      position: absolute;
+      inset-block-end: -2px;
+      inset-inline: 0;
+      height: 1px;
+      background: var(--accent);
+    }
+  }
+
+  &__index {
+    font-size: 0.56rem;
+    color: var(--accent);
+  }
+
+  &__cta {
+    padding: 0.6rem 1rem;
+    font-size: 0.64rem;
+  }
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tool {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+
+  &:hover {
+    color: var(--fg);
+    border-color: var(--line-strong);
+  }
+
+  &--menu {
+    display: none;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1100px) {
+  .nav__list {
+    gap: 1rem;
+  }
+
+  .nav {
+    gap: 1.25rem;
+  }
+
+  .mark__role {
+    display: none;
+  }
+}
+
+/* ---------- Mobile + small tablet ---------- */
+@media (max-width: 920px) {
+  .tool--menu {
+    display: grid;
+  }
+
+  .mark__name {
+    font-size: 0.88rem;
+  }
+
+  .nav {
+    position: fixed;
+    inset-block-start: var(--header-h);
+    inset-inline: 0;
+    inset-block-end: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 2.5rem;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -8px;
+    transition:
+      opacity 0.25s var(--ease),
+      translate 0.25s var(--ease),
+      visibility 0.25s;
+
+    &--open {
+      opacity: 1;
+      visibility: visible;
+      translate: 0;
+    }
+
+    &__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    &__link {
+      justify-content: flex-start;
+      gap: 0.9rem;
+      padding-block: 1rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--line);
+
+      &--active::after {
+        display: none;
+      }
+
+      &--active {
+        color: var(--accent);
+      }
+    }
+
+    &__index {
+      font-size: 0.68rem;
+      min-width: 1.6rem;
+    }
+
+    &__cta {
+      margin-top: 1.75rem;
+      padding: 0.95rem 1rem;
+      font-size: 0.7rem;
+    }
+  }
+}

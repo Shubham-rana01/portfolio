@@ -1,0 +1,47 @@
+<section class="section" id="experience">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>05</b> Experience</p>
+      <h2 class="section__title display">Where I've <em>shipped</em></h2>
+      <p class="section__lead">Five years across enterprise delivery and client integrations.</p>
+    </header>
+
+    <ol class="roles">
+      @for (job of profile.experience; track job.company + job.period; let i = $index) {
+        <li class="role" [appReveal]="i * 80">
+          <p class="role__period mono">{{ job.period }}</p>
+
+          <div class="role__body">
+            <h3 class="role__title display">{{ job.role }}</h3>
+            <p class="role__org">
+              <span class="role__company">{{ job.company }}</span>
+              <span class="role__sep" aria-hidden="true">—</span>
+              <span>{{ job.location }}</span>
+            </p>
+
+            @if (job.project) {
+              <p class="role__project mono">
+                {{ job.project }}
+                @if (job.client) {
+                  <span class="role__client">Client: {{ job.client }}</span>
+                }
+              </p>
+            }
+
+            <ul class="role__points">
+              @for (achievement of job.achievements; track achievement) {
+                <li>{{ achievement }}</li>
+              }
+            </ul>
+
+            <ul class="role__tech">
+              @for (tech of job.technologies; track tech) {
+                <li class="chip">{{ tech }}</li>
+              }
+            </ul>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

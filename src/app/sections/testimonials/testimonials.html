@@ -1,0 +1,24 @@
+@if (profile.testimonials.length) {
+  <section class="section" id="testimonials">
+    <div class="shell section__grid">
+      <header class="section__head" [appReveal]="0">
+        <p class="section__label mono"><b>+</b> References</p>
+        <h2 class="section__title display">What people <em>say</em></h2>
+        <p class="section__lead">From managers, clients and the engineers I've worked beside.</p>
+      </header>
+
+      <ul class="quotes">
+        @for (testimonial of profile.testimonials; track testimonial.author; let i = $index) {
+          <li class="quote" [appReveal]="i * 70">
+            <app-icon class="quote__mark" name="quote" [size]="22" />
+            <blockquote class="quote__text">{{ testimonial.quote }}</blockquote>
+            <p class="quote__author">
+              <span class="quote__name">{{ testimonial.author }}</span>
+              <span class="quote__role mono">{{ testimonial.role }}</span>
+            </p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+}

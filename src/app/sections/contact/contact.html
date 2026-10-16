@@ -1,0 +1,109 @@
+<section class="section" id="contact">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>08</b> Contact</p>
+      <h2 class="section__title display">Let's build <em>something</em></h2>
+      <p class="section__lead">
+        Tell me what you're building. I reply {{ profile.availability.responseTime.toLowerCase() }}.
+      </p>
+    </header>
+
+    <div class="contact">
+      <div class="contact__top" [appReveal]="50">
+        <ul class="engagements">
+          @for (engagement of profile.engagements; track engagement.title) {
+            <li class="engagement">
+              <app-icon [name]="engagement.icon" [size]="16" />
+              <div>
+                <p class="engagement__title">{{ engagement.title }}</p>
+                <p class="engagement__text">{{ engagement.description }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+
+        <ul class="channels">
+          <li class="channel">
+            <span class="mono">Email</span>
+            <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+          </li>
+          @if (profile.phone) {
+            <li class="channel">
+              <span class="mono">Phone</span>
+              <a [href]="telHref">{{ profile.phone }}</a>
+            </li>
+          }
+          <li class="channel">
+            <span class="mono">Based in</span>
+            <span>{{ profile.location }} · {{ profile.timezone }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form" [formGroup]="form" (ngSubmit)="submit()" [appReveal]="110">
+        <div class="form__grid">
+          <label class="field">
+            <span class="field__label mono">Name</span>
+            <input type="text" formControlName="name" autocomplete="name" placeholder="Jane Doe" />
+            @if (invalid('name')) {
+              <span class="field__error">Please enter your name.</span>
+            }
+          </label>
+
+          <label class="field">
+            <span class="field__label mono">Email</span>
+            <input
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              placeholder="jane@company.com"
+            />
+            @if (invalid('email')) {
+              <span class="field__error">Please enter a valid email address.</span>
+            }
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label mono">Message</span>
+          <textarea
+            formControlName="message"
+            rows="5"
+            placeholder="What are you building, what's the timeline, and what does done look like?"
+          ></textarea>
+          @if (invalid('message')) {
+            <span class="field__error">Please write at least 20 characters.</span>
+          }
+        </label>
+
+        <!-- Honeypot: hidden from users, catches naive spam bots. -->
+        <label class="honeypot" aria-hidden="true">
+          Company
+          <input type="text" formControlName="company" tabindex="-1" autocomplete="off" />
+        </label>
+
+        <div class="form__foot">
+          <button class="btn btn--solid" type="submit" [disabled]="status() === 'sending'">
+            {{ status() === 'sending' ? 'Sending' : 'Send message' }}
+            <app-icon name="arrow" [size]="14" />
+          </button>
+
+          <p class="form__status" role="status" aria-live="polite">
+            @switch (status()) {
+              @case ('sent') {
+                <span class="form__status--ok">Thanks — your message is on its way.</span>
+              }
+              @case ('error') {
+                <span class="form__status--err">
+                  Something went wrong. Email me at
+                  <a [href]="'mailto:' + profile.email">{{ profile.email }}</a
+                  >.
+                </span>
+              }
+            }
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

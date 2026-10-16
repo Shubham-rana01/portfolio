@@ -1,0 +1,25 @@
+<section class="section" id="services">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>02</b> Services</p>
+      <h2 class="section__title display">What teams <em>hire me</em> for</h2>
+      <p class="section__lead">
+        Six problems I solve repeatedly. Bring one, or bring the whole system.
+      </p>
+    </header>
+
+    <ul class="services">
+      @for (service of profile.services; track service.title; let i = $index) {
+        <li class="service" [appReveal]="i * 50">
+          <span class="service__icon">
+            <app-icon [name]="service.icon" [size]="18" />
+          </span>
+          <div class="service__body">
+            <h3 class="service__title">{{ service.title }}</h3>
+            <p class="service__text">{{ service.description }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

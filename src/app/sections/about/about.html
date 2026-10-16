@@ -1,0 +1,54 @@
+<section class="section" id="about">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>01</b> About</p>
+      <h2 class="section__title display">Systems built to <em>outlive</em> the rewrite</h2>
+      <p class="section__lead">
+        Most enterprise software fails slowly — it gets harder to change until nobody dares touch
+        it. My work is making sure that doesn't happen.
+      </p>
+    </header>
+
+    <div class="about">
+      <ol class="principles" [appReveal]="60">
+        @for (principle of principles; track principle.title; let i = $index) {
+          <li class="principle">
+            <span class="principle__num mono">0{{ i + 1 }}</span>
+            <div>
+              <h3 class="principle__title">{{ principle.title }}</h3>
+              <p class="principle__text">{{ principle.text }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+
+      <dl class="facts" [appReveal]="120">
+        <div class="facts__row">
+          <dt class="mono">Role</dt>
+          <dd>{{ profile.title }}</dd>
+        </div>
+        <div class="facts__row">
+          <dt class="mono">Based in</dt>
+          <dd>{{ profile.location }} · {{ profile.timezone }}</dd>
+        </div>
+        <div class="facts__row">
+          <dt class="mono">Availability</dt>
+          <dd>{{ profile.availability.startDate }}</dd>
+        </div>
+        <div class="facts__row">
+          <dt class="mono">Languages</dt>
+          <dd>{{ profile.availability.languages.join(' · ') }}</dd>
+        </div>
+        <div class="facts__row">
+          <dt class="mono">Reply time</dt>
+          <dd>{{ profile.availability.responseTime }}</dd>
+        </div>
+      </dl>
+
+      <a class="text-link about__cta" href="#contact">
+        Let's talk
+        <app-icon name="arrow" [size]="13" />
+      </a>
+    </div>
+  </div>
+</section>

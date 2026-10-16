@@ -1,0 +1,71 @@
+<section class="hero" id="top">
+  <div class="shell hero__inner">
+    <div class="hero__meta mono" [appReveal]="0">
+      <span>{{ profile.location }}</span>
+      <span class="hero__dot" aria-hidden="true">/</span>
+      <span>{{ profile.timezone }}</span>
+      <span class="hero__dot" aria-hidden="true">/</span>
+      <span>Est. {{ year - 5 }}</span>
+    </div>
+
+    <h1 class="display hero__title" [appReveal]="60">
+      Building <em>scalable</em>, reusable<br />
+      enterprise solutions.
+    </h1>
+
+    <div class="hero__split">
+      <div class="hero__col" [appReveal]="140">
+        <p class="hero__intro">{{ profile.summary }}</p>
+
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#projects">
+            See the work
+            <app-icon name="arrow" [size]="14" />
+          </a>
+          <a class="btn btn--line" href="#contact">Start a project</a>
+          @if (profile.resumeUrl) {
+            <a class="btn btn--line" [href]="profile.resumeUrl" [attr.download]="resumeFileName">
+              <app-icon name="download" [size]="14" />
+              Résumé
+            </a>
+          }
+        </div>
+      </div>
+
+      <aside class="hero__col hero__col--side" [appReveal]="200">
+        @if (profile.availableForWork) {
+          <p class="status">
+            <span class="status__dot" aria-hidden="true"></span>
+            <span class="mono">Available for work</span>
+          </p>
+        }
+
+        <dl class="now">
+          <dt class="mono">Currently</dt>
+          <dd>{{ profile.now }}</dd>
+        </dl>
+
+        <ul class="hero__links">
+          @for (social of profile.socials; track social.url) {
+            <li>
+              <a class="hero__link" [href]="social.url" target="_blank" rel="noopener noreferrer">
+                <app-icon [name]="social.icon" [size]="15" />
+                <span class="mono">{{ social.label }}</span>
+                <app-icon name="external" [size]="12" />
+              </a>
+            </li>
+          }
+        </ul>
+      </aside>
+    </div>
+
+    <dl class="stats" [appReveal]="260">
+      @for (stat of profile.stats; track stat.label) {
+        <div class="stats__item">
+          <dt class="stats__value display">{{ stat.value }}</dt>
+          <dd class="stats__label mono">{{ stat.label }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>

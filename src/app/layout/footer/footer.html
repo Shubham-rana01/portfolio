@@ -1,0 +1,27 @@
+<footer class="foot">
+  <div class="shell foot__inner">
+    <div class="foot__brand">
+      <p class="foot__name display">{{ profile.name }}</p>
+      <p class="foot__role mono">{{ profile.title }} · {{ profile.location }}</p>
+    </div>
+
+    <ul class="foot__links">
+      @for (social of profile.socials; track social.url) {
+        <li>
+          <a class="foot__link mono" [href]="social.url" target="_blank" rel="noopener noreferrer">
+            {{ social.label }}
+            <app-icon name="external" [size]="11" />
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="foot__end">
+      <p class="foot__copy mono">© {{ year }} — All rights reserved</p>
+      <a class="foot__top mono no-print" href="#top">
+        Back to top
+        <app-icon name="arrow" [size]="12" />
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,95 @@
+.about {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+
+  &__cta {
+    justify-self: start;
+  }
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
+}
+
+.principle {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  border-inline-end: 1px solid var(--line);
+  transition: background-color 0.3s var(--ease);
+
+  &:hover {
+    background: var(--bg-1);
+  }
+
+  &__num {
+    font-size: 0.62rem;
+    color: var(--accent);
+    padding-top: 0.25rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  &__text {
+    font-size: 0.89rem;
+    color: var(--fg-muted);
+  }
+}
+
+.facts {
+  margin: 0;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--line);
+
+    &:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    dt {
+      font-size: 0.62rem;
+      color: var(--fg-faint);
+      padding-top: 0.25rem;
+    }
+
+    dd {
+      margin: 0;
+      font-size: 0.91rem;
+      color: var(--fg-muted);
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 760px) {
+  .principles {
+    grid-template-columns: 1fr;
+  }
+
+  .principle {
+    padding: 1.25rem 1.1rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 520px) {
+  .facts__row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}

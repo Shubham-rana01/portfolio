@@ -1,0 +1,59 @@
+<header class="bar no-print" [class.bar--solid]="scrolled()">
+  <div class="progress" aria-hidden="true">
+    <span class="progress__fill" [style.transform]="'scaleX(' + progress() + ')'"></span>
+  </div>
+
+  <div class="shell bar__inner">
+    <a class="mark" href="#top" (click)="close()">
+      <span class="mark__initials">{{ profile.initials }}</span>
+      <span class="mark__name">{{ profile.name }}</span>
+      <span class="mark__role mono">{{ profile.title }}</span>
+    </a>
+
+    <nav class="nav" [class.nav--open]="open()" aria-label="Primary">
+      <ul class="nav__list">
+        @for (link of links; track link.id) {
+          <li>
+            <a
+              class="nav__link mono"
+              [class.nav__link--active]="active() === link.id"
+              [href]="'#' + link.id"
+              (click)="close()"
+            >
+              <span class="nav__index">{{ link.index }}</span>
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <a class="btn btn--solid nav__cta" href="#contact" (click)="close()">
+        Start a project
+        <app-icon name="arrow" [size]="14" />
+      </a>
+    </nav>
+
+    <div class="tools">
+      <button
+        type="button"
+        class="tool"
+        (click)="themeService.toggle()"
+        [attr.aria-label]="
+          'Switch to ' + (themeService.theme() === 'dark' ? 'light' : 'dark') + ' theme'
+        "
+      >
+        <app-icon [name]="themeService.theme() === 'dark' ? 'sun' : 'moon'" [size]="17" />
+      </button>
+
+      <button
+        type="button"
+        class="tool tool--menu"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="open()"
+        aria-label="Toggle navigation menu"
+      >
+        <app-icon [name]="open() ? 'close' : 'menu'" [size]="17" />
+      </button>
+    </div>
+  </div>
+</header>

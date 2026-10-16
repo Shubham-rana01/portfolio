@@ -1,0 +1,103 @@
+<section class="section" id="projects">
+  <div class="shell section__grid">
+    <header class="section__head" [appReveal]="0">
+      <p class="section__label mono"><b>04</b> Selected work</p>
+      <h2 class="section__title display">Real systems, <em>measured</em> outcomes</h2>
+      <p class="section__lead">
+        Client work is under NDA, so these are described by problem and result rather than
+        screenshots.
+      </p>
+    </header>
+
+    <ol class="index">
+      @for (project of profile.projects; track project.title; let i = $index) {
+        <li class="entry" [class.entry--open]="expanded() === project.title" [appReveal]="i * 40">
+          <h3 class="entry__heading">
+            <button
+              type="button"
+              class="entry__trigger"
+              (click)="toggle(project.title)"
+              [attr.aria-expanded]="expanded() === project.title"
+              [attr.aria-controls]="'project-' + i"
+            >
+              <span class="entry__num mono">{{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}</span>
+
+              <span class="entry__main">
+                <span class="entry__title">
+                  {{ project.title }}
+                  @if (project.highlight) {
+                    <span class="entry__flag mono">Featured</span>
+                  }
+                </span>
+                <span class="entry__summary">{{ project.summary }}</span>
+              </span>
+
+              <span class="entry__meta mono">
+                <span class="entry__context">{{ project.context }}</span>
+                <span class="entry__year">{{ project.year }}</span>
+              </span>
+
+              <span class="entry__toggle" aria-hidden="true">
+                <app-icon name="arrow" [size]="15" />
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="entry__panel"
+            [id]="'project-' + i"
+            [attr.inert]="expanded() === project.title ? null : ''"
+          >
+            <div class="entry__panel-inner">
+              <p class="entry__description">{{ project.description }}</p>
+
+              <ul class="impact">
+                @for (result of project.impact; track result) {
+                  <li class="impact__item">
+                    <app-icon name="check" [size]="14" />
+                    {{ result }}
+                  </li>
+                }
+              </ul>
+
+              <div class="entry__footer">
+                <ul class="entry__tags">
+                  @for (tag of project.tags; track tag) {
+                    <li class="chip">{{ tag }}</li>
+                  }
+                </ul>
+
+                @if (project.liveUrl || project.repoUrl) {
+                  <div class="entry__links">
+                    @if (project.liveUrl) {
+                      <a
+                        class="text-link"
+                        [href]="project.liveUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live
+                        <app-icon name="external" [size]="12" />
+                      </a>
+                    }
+                    @if (project.repoUrl) {
+                      <a
+                        class="text-link"
+                        [href]="project.repoUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Source
+                        <app-icon name="github" [size]="12" />
+                      </a>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
