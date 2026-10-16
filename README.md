@@ -23,7 +23,7 @@ All personal content lives in one file — edit it and the whole site updates:
   LinkedIn and WhatsApp don't run JavaScript.
 - [public/robots.txt](public/robots.txt) and [public/sitemap.xml](public/sitemap.xml) — update the
   URL if you move to a custom domain.
- Drop your CV at `public/resume.pdf` — the hero "Résumé" button picks it up automatically and saves
+- Drop your CV at `public/resume.pdf` — the hero "Résumé" button picks it up automatically and saves
   it as `Shubham-Rana-Senior-Software-Engineer.pdf`. Clear `resumeUrl` in the data file to hide the
   button.
 - Branding assets are generated, not hand-drawn. Re-run them after changing the accent colour,
