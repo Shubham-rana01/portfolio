@@ -78,7 +78,7 @@ $linePen = New-Object System.Drawing.Pen ([System.Drawing.Color]::FromArgb(36, 2
 $g.DrawLine($linePen, $pad, ($H - 110), ($W - $pad), ($H - 110))
 
 $footFont = New-Object System.Drawing.Font('Consolas', 22, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
-$g.DrawString('shubhamrana01.github.io/portfolio', $footFont,
+$g.DrawString('shubham-rana01.github.io/portfolio', $footFont,
     (New-Object System.Drawing.SolidBrush($faint)), $pad, ($H - 78))
 
 $right = New-Object System.Drawing.StringFormat
