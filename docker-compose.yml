@@ -1,0 +1,23 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_HREF: /
+    image: portfolio:latest
+    container_name: portfolio
+    ports:
+      - '8080:8080'
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ['CMD', 'curl', '-fsS', 'http://localhost:8080/healthz']
+      interval: 30s
+      timeout: 3s
+      retries: 3
