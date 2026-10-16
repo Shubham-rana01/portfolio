@@ -85,6 +85,10 @@ body {
     color 0.35s var(--ease);
 }
 
+body.is-locked {
+  overflow: hidden;
+}
+
 /* Fine grain keeps large flat areas from looking flat and synthetic. */
 body::before {
   content: '';
