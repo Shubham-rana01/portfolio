@@ -14,7 +14,7 @@ export const PROFILE: Profile = {
   email: 'shubhamrana.tech@gmail.com',
   phone: '+91 82951 82910',
   resumeUrl: 'resume.pdf',
-  siteUrl: 'https://shubhamrana01.github.io/portfolio/',
+  siteUrl: 'https://shubham-rana01.github.io/portfolio/',
   availableForWork: true,
 
   // e.g. 'https://formspree.io/f/xxxxxxxx' — leave empty to open the visitor's mail client instead.
