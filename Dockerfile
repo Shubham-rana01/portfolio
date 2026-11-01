@@ -14,7 +14,7 @@ ARG BASE_HREF=/
 RUN npm run build -- --configuration production --base-href "${BASE_HREF}"
 
 # ---------- Runtime ----------
-FROM nginx:1.27-alpine AS runtime
+FROM nginx:1.31-alpine AS runtime
 
 RUN apk add --no-cache curl
 
